@@ -15,7 +15,8 @@ public class Game extends ApplicationAdapter {
 	Ball ball;
 	playerOne player1;
 	playerTwo player2;
-	public static final int SPEED = 12;
+	PongAI pongAI = new PongAI(player2, ball);
+	public static final int SPEED = 8;
 	float x = 50;
 	float y = 50;
 	float xSpeed = 3;
@@ -25,6 +26,7 @@ public class Game extends ApplicationAdapter {
 		ball = new Ball(150,200,10,SPEED,5);
 		player1 = new playerOne(2,Gdx.graphics.getHeight() / 2);
 		player2 = new playerTwo(Gdx.graphics.getWidth()- 18,(Gdx.graphics.getHeight())/2);
+		pongAI = new PongAI(player2, ball);
 	}
 
 	@Override
@@ -34,6 +36,7 @@ public class Game extends ApplicationAdapter {
 		player1.movement();
 		player2.movement();
 		ball.update();
+		pongAI.update();
 		ball.draw(shape);
 		ball.drawLine(shape);
 		player1.draw(shape);

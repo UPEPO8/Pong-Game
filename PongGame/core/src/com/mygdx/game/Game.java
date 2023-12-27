@@ -35,6 +35,7 @@ public class Game extends ApplicationAdapter {
 		player2.movement();
 		ball.update();
 		ball.draw(shape);
+		ball.drawLine(shape);
 		player1.draw(shape);
 		player2.draw(shape);
 		shape.end();

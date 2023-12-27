@@ -18,6 +18,7 @@ public class playerOne {
 		this.y = y;
 	}
 	
+	
 	public void movement() {
 		if(Gdx.input.isKeyPressed(Keys.W)) {
 			y += SPEED;
@@ -31,8 +32,22 @@ public class playerOne {
 	    if (y + height > Gdx.graphics.getHeight()) {
 	        y = Gdx.graphics.getHeight() - height;
 	    }
+	    
+	    if(Gdx.input.isKeyPressed(Keys.D)) {
+			x += SPEED;
+		}
+		if(Gdx.input.isKeyPressed(Keys.A)) {
+			x -= SPEED;
+		}
+		if (x < 0) {
+	        x = 0;
+	    }
+	    if (x + height > Gdx.graphics.getWidth()) {
+	        x = Gdx.graphics.getWidth() - width;
+	    }
 	}
-		
+	
+	
 		
 	
 	public void draw(ShapeRenderer shape) {

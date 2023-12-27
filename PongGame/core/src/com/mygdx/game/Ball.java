@@ -10,6 +10,7 @@ public class Ball {
 	int size;
 	int xSpeed;
 	int ySpeed;
+	//float MAX_REFLECTION_ANGLE = 10;
 	Color color = Color.WHITE;
 	public Ball(int x, int y, int size, int xSpeed, int ySpeed) {
 		this.x = x;
@@ -22,19 +23,23 @@ public class Ball {
 	public void update() {
 		x += xSpeed;
 		y += ySpeed;
+		
+		
 		if(x > Gdx.graphics.getWidth()) {
 			xSpeed = -xSpeed;
 		}
 		if(x < 0) {
 			xSpeed = -xSpeed;
 		}
+		
+		
 		if(y > Gdx.graphics.getHeight()) {
 			ySpeed = -ySpeed;
 		}
 		if(y < 0) {
 			ySpeed = -ySpeed;
 		}
-		
+			
 	}
 	
 	public void draw(ShapeRenderer shape) {
@@ -42,16 +47,20 @@ public class Ball {
 		shape.circle(x, y, size);
 	}
 	
+	public void drawLine(ShapeRenderer shape) {
+		shape.setColor(Color.WHITE);
+		shape.rect(Gdx.graphics.getWidth()/2, 0, 3, 600);
+	}
+	
 	public void checkCollision(playerOne paddleOne, playerTwo paddleTwo) {
-		if(collidesWith(paddleOne)) {
-			xSpeed = -xSpeed;
-			ySpeed = -ySpeed;
-		}
-		if(collidesWith(paddleTwo)) {
-			xSpeed = -xSpeed;
-			ySpeed = -ySpeed;
-		}
-		
+			 if (collidesWith(paddleOne)) {
+			     xSpeed = -xSpeed;
+			     ySpeed = ySpeed;	
+			 } 
+			 if(collidesWith(paddleTwo)) {
+				 xSpeed = -xSpeed;
+			     ySpeed = ySpeed;	
+			 }
 	}
 	
 	private boolean collidesWith(playerOne paddleOne) {

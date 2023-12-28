@@ -14,7 +14,7 @@ public class PongAI {
     public void update() {
         
         float aiCenterY = paddleTwo.y + paddleTwo.height / 2.0f;
-        float ballCenterY = ball.y + ball.size / 2.0f;
+        float ballCenterY = ball.y+ ball.size / 2.0f;
 
         // Adjust the AI paddle's position based on the ball's position
         if (aiCenterY < ballCenterY) {

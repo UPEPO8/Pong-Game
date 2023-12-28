@@ -33,18 +33,7 @@ public class playerOne {
 	        y = Gdx.graphics.getHeight() - height;
 	    }
 	    
-	    if(Gdx.input.isKeyPressed(Keys.D)) {
-			x += SPEED;
-		}
-		if(Gdx.input.isKeyPressed(Keys.A)) {
-			x -= SPEED;
-		}
-		if (x < 0) {
-	        x = 0;
-	    }
-	    if (x + height > Gdx.graphics.getWidth()) {
-	        x = Gdx.graphics.getWidth() - width;
-	    }
+	  
 	}
 	
 	
@@ -53,6 +42,18 @@ public class playerOne {
 	public void draw(ShapeRenderer shape) {
 		shape.setColor(colorOne);
 		shape.rect(x,y, width,height);
+		
+	}
+
+
+	public void moveUp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void moveDown() {
+		// TODO Auto-generated method stub
 		
 	}
 }

@@ -38,4 +38,14 @@ public class playerTwo {
 		shape.setColor(Color.GREEN);
 		shape.rect(x, y, width, height);
 	}
+
+	public void moveUp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void moveDown() {
+		// TODO Auto-generated method stub
+		
+	}
 }

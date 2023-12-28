@@ -15,6 +15,7 @@ public class Ball {
     Color color = Color.WHITE;
     private long lastResetTime = 0;
     private static final long RESET_DELAY = 3000; // 3 seconds in milliseconds
+    private long resetDelay = 0; // Delay after resetting the ball
 
     private BitmapFont font;  // Add a BitmapFont for rendering text
     private SpriteBatch spriteBatch;  // Add a SpriteBatch for rendering text
@@ -29,6 +30,35 @@ public class Ball {
         spriteBatch = new SpriteBatch();
     }
 
+    private void handleResetDelay(Game game) {
+        if (resetDelay > 0) {
+            try {
+                Thread.sleep(resetDelay);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            resetDelay = 0;
+        } else {
+            handleScorer(game);
+        }
+    }
+
+    private void handleScorer(Game game) {
+        if (x < 0) {
+            game.player2Score++;
+            resetBall(game);
+        } else if (x > Gdx.graphics.getWidth()) {
+            game.player1Score++;
+            resetBall(game);
+        }
+
+        if (y > Gdx.graphics.getHeight() || y < 0) {
+            ySpeed = -ySpeed;
+        }
+        x += xSpeed;
+        y += ySpeed;
+    }
+
     public void update(Game game) {
         if (lastResetTime > 0) {
             long elapsedTime = System.currentTimeMillis() - lastResetTime;
@@ -41,26 +71,11 @@ public class Ball {
                 spriteBatch.end();
             } else {
                 lastResetTime = 0;
-                resetBall(game);  
+                handleResetDelay(game);
             }
-        } else { //Scorer
-            if (x < 0) {
-              
-                game.player2Score++;
-                resetBall(game);
-            } else if (x > Gdx.graphics.getWidth()) {
-               
-                game.player1Score++;
-                resetBall(game);
-            }
-
-            if (y > Gdx.graphics.getHeight() || y < 0) {
-                ySpeed = -ySpeed;
-            }
-            
+        } else {
+            handleScorer(game);
         }
-        x += xSpeed;
-        y += ySpeed;
     }
 
     public void draw(ShapeRenderer shape) {
@@ -122,6 +137,6 @@ public class Ball {
         xSpeed = -xSpeed;
         ySpeed = -ySpeed;
         lastResetTime = System.currentTimeMillis();
+        resetDelay = 100; // Set the reset delay to 100 milliseconds
     }
-
 }

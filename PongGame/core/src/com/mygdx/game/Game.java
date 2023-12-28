@@ -41,7 +41,7 @@ public class Game extends ApplicationAdapter {
         player1.movement();
         player2.movement();
         ball.update(this);
-        pongAI.update();
+     
         ball.draw(shape);
         ball.drawLine(shape);
         player1.draw(shape);
